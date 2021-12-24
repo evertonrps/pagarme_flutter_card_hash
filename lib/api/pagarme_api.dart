@@ -3,29 +3,29 @@
 /// card data to be sent to your backend (and Pagar.me's API)
 
 import 'package:dio/dio.dart';
-import 'package:pagarme_flutter_card_hash/constants/pagarme_constants.dart';
-import 'package:pagarme_flutter_card_hash/exceptions/response_exception.dart';
-import 'package:pagarme_flutter_card_hash/models/pagarme_public_key.dart';
-import 'package:pagarme_flutter_card_hash/utils/http_tunnel.dart';
+import 'package:pagarme_card_hash/constants/pagarme_constants.dart';
+import 'package:pagarme_card_hash/exceptions/response_exception.dart';
+import 'package:pagarme_card_hash/models/pagarme_public_key.dart';
+import 'package:pagarme_card_hash/utils/http_tunnel.dart';
 
 class PagarMeApi<T> {
   final HttpTunnel httpTunnel = new HttpTunnel();
   final _baseUrl = PagarMeConstants.cardHashUrl;
-  String pagarMeApiKey;
+  String? pagarMeApiKey;
 
   PagarMeApi({this.pagarMeApiKey});
 
-  Future<PagarMePublicKey> generateEncryptionKeyAndId() async {
+  Future<PagarMePublicKey?> generateEncryptionKeyAndId() async {
     Response response =
         await httpTunnel.get('$_baseUrl?api_key=$pagarMeApiKey');
 
-    if ((response == null) || (response.statusCode != 200)) {
+    if (response.statusCode != 200) {
       throw new ResponseException(
           cause:
               "Pagar.me's API didn't respond as expected or there's no internet connection.");
     }
 
-    PagarMePublicKey pagarMePublicKey =
+    PagarMePublicKey? pagarMePublicKey =
         PagarMePublicKey.fromJson(response.data);
 
     return pagarMePublicKey;

@@ -1,12 +1,12 @@
 /// A (very) basic test class.
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pagarme_flutter_card_hash/api/pagarme_api.dart';
-import 'package:pagarme_flutter_card_hash/encryption/pagarme_encrypt.dart';
-import 'package:pagarme_flutter_card_hash/models/pagarme_card.dart';
-import 'package:pagarme_flutter_card_hash/models/pagarme_public_key.dart';
+import 'package:pagarme_card_hash/api/pagarme_api.dart';
+import 'package:pagarme_card_hash/encryption/pagarme_encrypt.dart';
+import 'package:pagarme_card_hash/models/pagarme_card.dart';
+import 'package:pagarme_card_hash/models/pagarme_public_key.dart';
 
-import 'package:pagarme_flutter_card_hash/pagarme_flutter_card_hash.dart';
+import 'package:pagarme_card_hash/pagarme_flutter_card_hash.dart';
 
 void main() {
   String pagarMeApiKey = "ek_test_yCRumKDVQgqFkjlQojnTSHgWw7UI5g";
@@ -20,10 +20,10 @@ void main() {
     test('generateEncryptionKeyAndId', () async {
       PagarMeApi pagarMeApi = PagarMeApi(pagarMeApiKey: pagarMeApiKey);
 
-      PagarMePublicKey pagarMePublicKey =
-          await pagarMeApi.generateEncryptionKeyAndId();
+      PagarMePublicKey? pagarMePublicKey =
+          await (pagarMeApi.generateEncryptionKeyAndId());
 
-      expect(pagarMePublicKey.id != null, true);
+      expect(pagarMePublicKey!.id != null, true);
     });
   });
 
@@ -31,10 +31,10 @@ void main() {
     test('generateCardHash', () async {
       PagarMeApi pagarMeApi = PagarMeApi(pagarMeApiKey: pagarMeApiKey);
 
-      PagarMePublicKey pagarMePublicKey =
-          await pagarMeApi.generateEncryptionKeyAndId();
+      PagarMePublicKey? pagarMePublicKey =
+          await (pagarMeApi.generateEncryptionKeyAndId());
 
-      expect(pagarMePublicKey.id != null, true);
+      expect(pagarMePublicKey!.id != null, true);
 
       PagarMeEncrypt pagarMeEncrypt = PagarMeEncrypt(
           pagarMePublicKey: pagarMePublicKey, pagarMeCard: pagarMeCardValid);

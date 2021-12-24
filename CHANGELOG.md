@@ -1,3 +1,7 @@
+## 0.2.1
+
+* Null Safety
+
 ## 0.2.0
 
 * Bump Dio and Encrypt versions.

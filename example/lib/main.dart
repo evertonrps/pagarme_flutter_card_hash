@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pagarme_flutter_card_hash/models/pagarme_card.dart';
-import 'package:pagarme_flutter_card_hash/pagarme_flutter_card_hash.dart';
+import 'package:pagarme_card_hash/models/pagarme_card.dart';
+import 'package:pagarme_card_hash/pagarme_flutter_card_hash.dart';
 
 void main() => runApp(MyApp());
 
@@ -150,8 +150,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         Padding(
           padding: EdgeInsets.all(10.0),
-          child: RaisedButton(
-            shape: StadiumBorder(),
+          child: ElevatedButton(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
@@ -162,7 +161,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 )
               ],
             ),
-            color: Colors.white,
+            style: ButtonStyle(),
+            //color: Colors.white,
             onPressed: () {
               _generateCardHash();
             },
